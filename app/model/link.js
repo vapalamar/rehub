@@ -5,6 +5,6 @@ const linkSchema = new Schema({
     date: Date
 });
 
-const Link = mongoose.model('Patient', linkSchema);
+const Link = mongoose.model('Link', linkSchema);
 
 module.exports = Link;
