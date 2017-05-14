@@ -1,11 +1,9 @@
-const app = require('./../api/v1');
+const app = require('./../app').web;
 const debug = require('debug')('rehub:server');
 const http = require('http');
 
-// Set application server port
 app.set('port', process.env.PORT || 3000);
 
-// Create server
 const server = http.createServer(app);
 server.listen(app.get('port'));
 
