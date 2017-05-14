@@ -1,17 +1,17 @@
-const app = require('./../app').web;
 const debug = require('debug')('rehub:server');
 const http = require('http');
+const {web} = require('./../app');
 
-app.set('port', process.env.PORT || 3000);
+web.set('port', process.env.PORT || 3000);
 
-const server = http.createServer(app);
-server.listen(app.get('port'));
+const server = http.createServer(web);
+server.listen(web.get('port'));
 
 server.on('error', onError);
 server.on('listening', onListening);
 
 function onError(error) {
-    const port = app.get('port');
+    const port = web.get('port');
     if (error.syscall !== 'listen') {
         throw error;
     }
