@@ -3,7 +3,7 @@ const {Doctor} = require('./../model');
 class DoctorRepo {
     get(query = {}) {
         return Doctor
-            .find(query)
+            .get(query)
             .then((data) => { 
                 return {ok: true, data: data}; 
             })
@@ -14,10 +14,8 @@ class DoctorRepo {
     }
 
     add(doctor = {}) {
-        const docRecord = Doctor(doctor);
-
-        return docRecord
-            .save(docRecord)
+        return Doctor
+            .add(doctor)
             .then(_ => {
                 return {ok: true, message: 'Successfully created a new doctor.'};
             })
@@ -29,14 +27,8 @@ class DoctorRepo {
 
     update(doctor = {}) {
         return Doctor
-            .findOneAndUpdate({login: doctor.login}, doctor)
+            .update(doctor)
             .then(data => {
-                if (data === null) {
-                    const err = new Error('There is no such doctor.');
-                    const errObj = JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err)));
-                    return Promise.reject({ok: false, err: errObj});
-                }
-
                 return {ok: true, message: 'Successfully updated the doctor.'};
             })
             .catch(err => {
@@ -47,14 +39,8 @@ class DoctorRepo {
 
     delete(doctor = {}) {
         return Doctor
-            .findOneAndRemove({login: doctor.login})
+            .delete(doctor)
             .then(data => {
-                if (data === null) {
-                    const err = new Error('There is no such doctor.');
-                    const errObj = JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err)));
-                    return Promise.reject({ok: false, err: errObj});
-                }
-
                 return {ok: true, message: 'Successfully deleted the doctor.'};
             })
             .catch(err => {

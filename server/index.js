@@ -1,4 +1,4 @@
-const debug = require('debug')('rehub:server');
+const debug = require('debug')('rehub');
 const http = require('http');
 const {web} = require('./../app');
 
