@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const auth = require('./auth');
 const client = require('./client');
 const api = require('./api');
+const guard = require('./guard');
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'client/public')));
 
 app.use('/auth', auth);
 app.use('/', client);
-app.use('/api', api);
+app.use('/api', guard, api);
 
 app.use(function(req, res, next) {
     const err = new Error('Not Found');

@@ -6,7 +6,7 @@ function guard(req, res, next) {
 
     if (token) {
         Auth.verify(token)
-            .then(result => next(result))
+            .then(_ => next())
             .catch(err => res.json(err));
     } else {
         res.status(403).json({

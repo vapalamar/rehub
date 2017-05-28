@@ -17,7 +17,6 @@ class DoctorRepo {
         return Doctor
             .add(doctor)
             .then(doctor => {
-                console.log(doctor);
                 return {ok: true, message: 'Successfully created a new doctor.', data: doctor};
             })
             .catch(err => {

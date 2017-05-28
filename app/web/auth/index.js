@@ -9,8 +9,10 @@ router.post('/signup', (req, res, next) => {
             .get({login: req.body.login})
             .then(result => {
                 if (result.ok && result.data.length > 0) {
-                    req.body.data = req.body;
-                    return Promise.resolve(req.body);
+                    return Promise.reject({
+                        ok: false,
+                        message: 'User already exists.'
+                    });
                 } else {
                     return DoctorRepo.add(req.body);
                 }
@@ -41,6 +43,7 @@ router.post('/login', (req, res, next) => {
                 if (userData && userData.pass === req.body.pass) {
                     return Auth.verify(req.body.token);
                 } else {
+                    res.redirect('/signup');
                     return Promise.reject({
                         ok: false,
                         message: 'Wrong credentials.'

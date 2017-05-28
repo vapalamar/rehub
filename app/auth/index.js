@@ -19,9 +19,7 @@ class Auth {
 
                     const userData = {
                         login: user.login,
-                        pass: user.pass,
-                        patients: user.patients || [],
-                        link: user.link || []
+                        pass: user.pass
                     };
 
                     const token = jwt.sign(userData, process.env.AUTH_SECRET, config);
