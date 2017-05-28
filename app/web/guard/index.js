@@ -1,4 +1,3 @@
-const express = require('express');
 const Auth = require('./../../auth');
 
 function guard(req, res, next) {
