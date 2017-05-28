@@ -35,22 +35,27 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
-    if (req.body && req.body.login && req.body.pass && req.body.token) {
+    if (req.body && req.body.login && req.body.pass) {
         DoctorRepo
             .get({login: req.body.login})
             .then(user => {
                 const userData = user.data && user.data[0];
                 if (userData && userData.pass === req.body.pass) {
-                    return Auth.verify(req.body.token);
+                    return Auth.authenticate(req.body);
                 } else {
-                    res.redirect('/signup');
                     return Promise.reject({
                         ok: false,
                         message: 'Wrong credentials.'
                     });
                 }
             })
-            .then(result => res.json(result))
+            .then(token => {
+                if (token.ok) {
+                    return res.json(token);
+                } else {
+                    return Promise.reject(token);
+                }
+            })
             .catch(err => next(err));
     } else {
         res.json({
