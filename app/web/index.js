@@ -4,6 +4,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const auth = require('./auth');
 const client = require('./client');
 const api = require('./api');
 
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/public')));
 
+app.use('/auth', auth);
 app.use('/', client);
 app.use('/api', api);
 
@@ -29,7 +31,7 @@ app.use(function(err, req, res, next) {
     res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
 
     res.status(err.status || 500);
-    res.send(err);
+    res.send(JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err))));
 });
 
 module.exports = app;

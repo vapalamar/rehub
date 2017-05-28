@@ -8,7 +8,7 @@ router.post('/', (req, res, next) => {
         .get({login: doctor.login})
         .then(result => {
             if (result.ok && result.data.length > 0) {
-                const err = new Error('Failed to create a new doctor: there is a similar record already');
+                const err = new Error('Failed to create a new doctor: there is a similar record already.');
                 const errObj = JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err)));
 
                 return Promise.reject({ok: false, err: errObj});

@@ -4,8 +4,15 @@ const Schema = mongoose.Schema;
 const DoctorSchema = new Schema({
     fname: String,
     lname: String,
-    login: String,
-    pass: String,
+    login: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    pass: {
+        type: String,
+        required: true
+    },
     patients: [{type: Schema.ObjectId, ref: 'Patient'}],
     link: [{type: Schema.ObjectId, ref: 'Link'}]
 });
