@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
+import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../auth";
 
@@ -10,24 +10,28 @@ import { AuthenticationService } from "../auth";
 
 export class RhLoginComponent {
     protected loading: boolean;
+    protected submitted: boolean;
     protected form: FormGroup;
 
     constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {
         this.form = this.fb.group({
-            login: new FormControl(),
-            pass: new FormControl()
+            login: ['', Validators.required],
+            pass: ['', Validators.required]
         });
     }
 
     protected submitLogin() {
-        this.loading = true;
-        const {login, pass} = this.form.value;
-        this.auth.login(login, pass)
-            .subscribe((res: any) => {
-                if (sessionStorage.getItem('rh-token') != null) {
-                    this.loading = false;
-                    this.router.navigateByUrl('/');
-                }
-            }); 
+        this.submitted = true;
+        if (this.form.valid) {
+            this.loading = true;
+            const {login, pass} = this.form.value;
+            this.auth.login(login, pass)
+                .subscribe((res: any) => {
+                    if (sessionStorage.getItem('rh-token') != null) {
+                        this.loading = false;
+                        this.router.navigate(['/profile', login]);
+                    }
+                });
+        } 
     }
 }
