@@ -9,6 +9,8 @@ const appRoutes: Routes = [
     { path: 'profile/:id', component: RhMainComponent, canActivate: [AuthGuard] },
     { path: 'login', component: RhLoginComponent },
     { path: 'signup', component: RhSignupComponent },
+
+    { path: '**', redirectTo: '/login' }
 ];
 
 export const RoutingModule = RouterModule.forRoot(appRoutes);

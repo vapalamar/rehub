@@ -1,7 +1,16 @@
 <div *ngIf="data">
     <h1>Hello, {{data.fname + ' ' + data.lname}}</h1>
+    <h2>Your links</h2>
+    <div class="list-group">
+        <div *ngFor="let l of data.link" class="list-group-item">
+            <a href="{{l}}" class="text-left" target="_blank">{{l}}</a>
+            <span class="pull-right">
+                <span class="glyphicon glyphicon-remove" role="button" (click)="onLinkRemove(l)"></span>
+            </span>
+        </div>
+    </div>
 
-    <h2>Your Patients <button type="button" class="btn btn-default" (click)="showAddDialog()">Add</button></h2>
+    <h2>Your patients <button type="button" class="btn btn-default" (click)="showAddDialog()">Add</button></h2>
 
     <div *ngIf="showDialog" [formGroup]="addDialogModel">
         <div class="form-group">
@@ -17,5 +26,9 @@
         <button class="btn btn-secondary" (click)="cancelAddPatient($event)">Cancel</button>
     </div>
 
-    <rh-patient *ngFor="let patient of data.patients" [data]="patient" (onEdit)="onEdit($event)" (onRemove)="onRemove($event)"></rh-patient>
+    <rh-patient *ngFor="let patient of data.patients"
+                [data]="patient" 
+                (onEdit)="onEdit($event)" 
+                (onRemove)="onRemove($event)"
+                (onLinkShare)="onLinkShare($event)"></rh-patient>
 </div>

@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const uuid = require('uuid/v1');
 const {generateProgressItem} = require('./report-generator');
+const guard = require('../guard');
 const router = express.Router();
 
 router.use(express.static(path.join(__dirname, 'public/dist')));
@@ -28,6 +29,12 @@ router.post('/generate', function(req, res, next) {
                 });
             });
         });
+    });
+});
+
+router.delete('/reports/:id', guard, function(req, res, next) {
+    fs.unlink(__dirname + `/reports/${req.params.id}.html`, function(err) {
+        res.send({ok: true});
     });
 });
 

@@ -15,6 +15,9 @@ export class RhPatientComponent implements OnInit {
 
     @Output()
     public onRemove = new EventEmitter();
+
+    @Output()
+    public onLinkShare = new EventEmitter();
     
     protected link: string;
     protected showNotification: boolean = false;
@@ -53,6 +56,7 @@ export class RhPatientComponent implements OnInit {
             .subscribe(res => {
                 this.link = res.json().link;
                 this.showNotification = true;
+                this.onLinkShare.emit(this.link);
             });
     }
 }

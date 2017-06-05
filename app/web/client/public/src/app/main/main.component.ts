@@ -104,4 +104,19 @@ export class RhMainComponent implements OnInit {
                 });
         }
     }
+
+    protected onLinkShare(link: string) {
+        (<any>this.data).link.push(link);
+        this.authHttp.put(`/api/v1/doctor`, this.data)
+                .subscribe(res => console.log(res));
+    }
+
+    protected onLinkRemove(link: string) {
+        const idx = (<any>this.data).link.indexOf(link);
+        (<any>this.data).link.splice(idx, 1);
+        this.authHttp.delete(link)
+            .subscribe(res => console.log(res));
+        this.authHttp.put(`/api/v1/doctor`, this.data)
+                .subscribe(res => console.log(res));
+    }
 }
