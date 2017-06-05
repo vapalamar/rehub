@@ -1,8 +1,15 @@
+<div class="alert alert-success" role="alert" *ngIf="showNotification">
+    <button type="button" class="close" (click)="showNotification = false" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Success!</strong>
+    <a href="http://localhost:3000{{link}}">Here is your link.</a>
+</div>
+
 <div class="panel panel-info mt-20">
     <div class="panel-heading">
         <h3 class="panel-title">
             Patient Card
             <div class="pull-right">
+                <span class="glyphicon glyphicon-link" role="button" (click)="onShare()"></span>
                 <span class="glyphicon glyphicon-pencil" role="button" (click)="onEdit.emit(data)"></span>
                 <span class="glyphicon glyphicon-remove" role="button" (click)="onRemove.emit(data)"></span>
             </div>
@@ -24,16 +31,13 @@
                     </tr>
                     <tr>
                     <td>Symptoms</td>
-                    <td>{{data.symptoms}}</td>
-                    </tr>
-                    <tr>
-                    <td>Progress</td>
-                    <td>{{data.progress}}</td>
+                    <td>Paralysis</td>
                     </tr>
                     
                 </tbody>
                 </table>
             </div>
         </div>
+        <rh-patient-chart [progress]="data.progress"></rh-patient-chart>
     </div>
 </div>

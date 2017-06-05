@@ -1,8 +1,7 @@
 <div *ngIf="data">
     <h1>Hello, {{data.fname + ' ' + data.lname}}</h1>
 
-    <h2>Your Patients</h2>
-    <button type="button" class="btn btn-default" (click)="showAddDialog()">Add</button>
+    <h2>Your Patients <button type="button" class="btn btn-default" (click)="showAddDialog()">Add</button></h2>
 
     <div *ngIf="showDialog" [formGroup]="addDialogModel">
         <div class="form-group">

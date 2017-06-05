@@ -5,6 +5,7 @@ import '@angular/core';
 import '@angular/common';
 import '@angular/http';
 import '@angular/router';
+import 'ng2-charts';
 
 // RxJS
 import 'rxjs';
@@ -15,5 +16,5 @@ import 'rxjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import 'charts.js/src/charts.js';
+import 'chart.js/src/chart.js';
 

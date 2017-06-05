@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^3.3.33",
+    "@types/chart.js": "^2.4.3",
     "@types/jasmine": "2.5.36",
     "@types/jquery": "^2.0.45",
     "@types/node": "^6.0.73",

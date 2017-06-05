@@ -97,6 +97,11 @@ export class RhMainComponent implements OnInit {
         const idx = (<any>this.data).patients.indexOf(patient);
         if (idx > -1) {
             (<any>this.data).patients.splice(idx, 1);
+            this.authHttp.put(`/api/v1/doctor`, this.data)
+                .subscribe(res => {    
+                    this.addDialogModel.reset();
+                    this.showDialog = false;
+                });
         }
     }
 }
