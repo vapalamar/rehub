@@ -12,6 +12,10 @@ body {
     background: #ecf0f1;
 }
 
+.mt-20 {
+    margin-top: 20px;
+}
+
 .dropdown .dropdown-menu {
     -webkit-transition: max-height 0.3s, opacity 0.2s 0.1s, visibility 0s 0.3s;
     -moz-transition: max-height 0.3s, opacity 0.2s 0.1s, visibility 0s 0.3s;

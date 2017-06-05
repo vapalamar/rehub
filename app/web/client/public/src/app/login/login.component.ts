@@ -29,7 +29,7 @@ export class RhLoginComponent {
                 .subscribe((res: any) => {
                     if (sessionStorage.getItem('rh-token') != null) {
                         this.loading = false;
-                        this.router.navigate(['/profile', login]);
+                        this.router.navigateByUrl(`/profile/${login}`);
                     }
                 });
         } 

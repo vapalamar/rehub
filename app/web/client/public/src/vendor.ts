@@ -15,4 +15,5 @@ import 'rxjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import 'charts.js/src/charts.js';
 

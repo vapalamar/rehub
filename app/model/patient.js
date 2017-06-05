@@ -5,8 +5,7 @@ const patientSchema = new Schema({
     fname: String,
     lname: String,
     symptoms: [],
-    progress: String,
-    link: [String]
+    progress: String
 });
 
 const Patient = mongoose.model('Patient', patientSchema);

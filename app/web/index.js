@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/auth', auth);
-app.use('/', client);
 app.use('/api', guard, api);
+app.use('/', client);
 
 app.use(function(req, res, next) {
     const err = new Error('Not Found');

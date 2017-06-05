@@ -7,4 +7,8 @@ router.get('/', function(req, res, next) {
     res.sendFile(__dirname + '/public/dist/index.html');
 });
 
+router.get('*', (req, res) => {
+    res.sendFile(__dirname + '/public/dist/index.html');
+});
+
 module.exports = router;

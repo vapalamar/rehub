@@ -21,14 +21,14 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/', (req, res, next) => {
-    const doctor = req.body.doctor || {};
+    const doctor = req.body || {};
     if (!doctor) {
         const err = {message: 'Doctor has to be provided.'};
         return next(err);
     }
 
     DoctorRepo
-        .update(req.body.doctor)
+        .update(doctor)
         .then(result => {
             const response = result.ok ? res.json(result) : next(result);
             return response;

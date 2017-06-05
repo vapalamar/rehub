@@ -1,1 +1,22 @@
-<h1>{{data$ | async | json}}</h1>
+<div *ngIf="data">
+    <h1>Hello, {{data.fname + ' ' + data.lname}}</h1>
+
+    <h2>Your Patients</h2>
+    <button type="button" class="btn btn-default" (click)="showAddDialog()">Add</button>
+
+    <div *ngIf="showDialog" [formGroup]="addDialogModel">
+        <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" id="fname" formControlName="fname" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <label for="fname">Last Name</label>
+            <input type="text" class="form-control" id="fname" placeholder="Last Name" formControlName="lname">
+        </div>
+
+        <button class="btn btn-primary" [disabled]="!addDialogModel.valid" (click)="onPatientAdd($event)">Submit</button>
+        <button class="btn btn-secondary" (click)="cancelAddPatient($event)">Cancel</button>
+    </div>
+
+    <rh-patient *ngFor="let patient of data.patients" [data]="patient" (onEdit)="onEdit($event)" (onRemove)="onRemove($event)"></rh-patient>
+</div>

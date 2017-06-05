@@ -13,8 +13,8 @@ const DoctorSchema = new Schema({
         type: String,
         required: true
     },
-    patients: [{type: Schema.ObjectId, ref: 'Patient'}],
-    link: [{type: Schema.ObjectId, ref: 'Link'}]
+    patients: [],
+    link: []
 });
 
 DoctorSchema.statics.get = function getDoctor(query = {}) {
